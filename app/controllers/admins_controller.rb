@@ -107,16 +107,18 @@ class AdminsController < ApplicationController
 
       fee = booking.fee
 
-      if year == Date.today.strftime("%Y")
-        if @weeks.keys.include?(week.to_i)
-          @weeks[week.to_i] += fee
+      if fee 
+        if year == Date.today.strftime("%Y")
+          if @weeks.keys.include?(week.to_i)
+            @weeks[week.to_i] += fee
+          end
+          @months[month.to_i] += fee
+          @quarters[quarter.to_i] += fee
         end
-        @months[month.to_i] += fee
-        @quarters[quarter.to_i] += fee
-      end
-      
-      if @years.keys.include?(year.to_i)
-        @years[year.to_i] += fee
+        
+        if @years.keys.include?(year.to_i)
+          @years[year.to_i] += fee
+        end
       end
     end
     
