@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @user.credit = 0
+    # @user.credit = 0
     
   end
 
