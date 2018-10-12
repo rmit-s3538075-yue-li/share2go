@@ -143,10 +143,9 @@ class AdminsController < ApplicationController
   end
   
   def update_cancel_booking
-    booking = params["booking_id"]
+    booking = Booking.find(params["booking_id"])
     car = Car.find(booking.car_id) 
     pickup_location = Location.find(booking.pickup_location_id)
-    return_location = Location.find(booking.return_location_id)
     
     car.status = params["car_status"] if params["car_status"]
     # car location
@@ -155,8 +154,13 @@ class AdminsController < ApplicationController
     pickup_location.status = params["pickup_location_status"] if params["pickup_location_status"]
     pickup_location.save
     
-    return_location.status = params["return_location_status"] if params["return_location_status"]
-    return_location.save
+    if booking.return_location_id
+      return_location = Location.find(booking.return_location_id) 
+      return_location.status = params["return_location_status"]
+      return_location.save
+    end
+    
+    booking.destroy
     redirect_to "/"
   end
 

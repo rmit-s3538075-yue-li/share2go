@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get "car_detail" => "cars#car_detail"
   get "cancel_booking" => "admins#cancel_booking"
     
+  post "cancel_booking" => "admins#update_cancel_booking"
   post "login" => "sessions#create"
   post "admin-login" => "sessions#create_admin"
   
