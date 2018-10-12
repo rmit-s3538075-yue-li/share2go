@@ -1,0 +1,81 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="rounded border m-3 shadow">
+    <div class="row justify-content-md-center m-3">
+      <%= f.label :first_name, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :first_name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center m-3">
+      <%= f.label :last_name, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :last_name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center m-3">
+      <%= f.label :license_no, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :license_no, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center m-3">
+      <%= f.label :mobile, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :mobile, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center m-3">
+      <%= f.label :email, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :email, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center m-3">
+      <%= f.label :password, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.password_field :password, class: "form-control" %>
+      </div>
+    </div>
+    <div class="row justify-content-md-center m-3">
+      <%= f.label :password_confirmation, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.password_field :password_confirmation, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="rounded border m-3 shadow">
+    <div class="row justify-content-md-center m-3">
+      <%= f.label :credit_card_no, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :credit_card_no, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-row justify-content-md-center m-4">
+      <div class="form-group col-md-4">
+        <label for="cardHolder">Card holder</label>
+        <input type="email" class="form-control" id="cardHolder" placeholder="e.g. Wade Wilson">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="expireDate">Expire date</label>
+        <input type="password" class="form-control" id="expireDate" placeholder="e.g. 01/20">
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mb-3">
+    <%= f.submit "Register", class:"btn btn-primary btn-md col-4 offset-4" %>
+  </div>
+<% end %>

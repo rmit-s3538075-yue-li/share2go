@@ -1,0 +1,40 @@
+<%= form_for(@report) do |f| %>
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% @report.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :booking_id %>
+  </div>  
+  <div class="field">
+    <%= f.hidden_field :car_id %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :car_make %>
+  </div>
+  
+  
+  <div class="container" style="padding:0">
+    <div class="border-bottom mt-4 mb-3"></div>
+    <%= f.label :content, class:"h6" %>
+    <div class="">
+      <%= f.text_area :content, class: "form-control", rows: "6" %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit", class:"btn btn-primary btn-md col-4 offset-4 mt-3" %>
+  </div>
+  
+  
+<% end %>

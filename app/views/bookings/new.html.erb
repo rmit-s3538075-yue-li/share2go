@@ -1,0 +1,44 @@
+<div class="container border-bottom">
+    <div class="row p-md-3">
+        <%#= link_to '<Back', bookings_path,:class => 'small col-2 text-left align-middle pt-3 back-icon' -%>
+        <span class="h1 col-4 offset-4 text-nowrap text-center">Confirm Booking</span>
+    </div>
+</div>
+
+
+<div class="container mt-3 pt-3 pb-2 border border-info rounded shadow">
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">Start Time:</lable>
+        <p class="col-7 col-sm-4 h6 bg-light p-3"><%= @booking.book_time %></p>
+    </div>
+    <% car = Car.find(@booking.car_id) %>
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">Price rate:</lable>
+        <p class="col-7 col-sm-4 h6 text-danger bg-light p-3">$<%= car.price %></p>
+    </div>
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">Minimum Deposit:</lable>
+        <p class="col-7 col-sm-4 h6 text-danger bg-light p-3">$<%= car.deposit %></p>
+    </div>
+</div>
+
+<div class="container border-top mt-5 pt-3">
+    <p class="h6">Car Info</p>
+</div>
+
+<div class="container mt-3 pt-3 pb-2 border border-info rounded shadow">
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">Make:</lable>
+        <p class="col-7 col-sm-4 h6 bg-light p-3"><%= car.make %></p>
+    </div>
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">Model:</lable>
+        <p class="col-7 col-sm-4 h6 bg-light p-3"><%= car.model %></p>
+    </div>
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">Number Plate:</lable>
+        <p class="col-7 col-sm-4 h6 bg-light p-3"><%= car.number_plate %></p>
+    </div>
+</div>
+
+<%= render 'form' %>

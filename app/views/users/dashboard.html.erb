@@ -1,0 +1,109 @@
+
+    <% if @booked = @user.booked_car %>
+        <div class="row shadow border rounded border-light bg-light pl-4 pt-4 pr-5 pb-3" style="position:absolute; top:100px; left:10%; width:80%;">
+            <p>
+                <strong class="h5">You booked a car. Let's pick it up.</strong>  <br><br>
+                
+                <% car = Car.find(@booked.car_id) %>
+                Car Detail:
+                <%= car.name %> <br>
+                Plate Number:
+                <%= car.number_plate %> <br>
+                
+                
+                Pick up at:
+                <%= Location.find(@booked.pickup_location_id).address %>
+            </p>
+        </div>
+        <%=image_tag("pickUp.jpg",:alter=>"dashboardbg", :class => "img-width")%>
+        
+        <%= link_to "Pick Up Car", "pick_up", :class => "btn btn-secondary btn-lg col-sm-12", :style => "border-radius:0" %>
+        <%= link_to "Report", "/reports/new", :class => "btn btn-danger btn-lg col-sm-12 mt-1", :style => "border-radius:0" %> <br>
+        
+        
+        
+        
+    <% elsif @picked_up = @user.picked_up_car %>
+        <div class="row shadow border rounded border-light bg-light pl-4 pt-4 pr-5 pb-3" style="position:absolute; top:100px; left:10%; width:80%;">
+            <p>
+                <strong class="h5">You are driving a car. Travel safe</strong>  <br><br>
+                
+                <% car = Car.find(@picked_up.car_id) %>
+                Car Detail:
+                <%= car.name %> <br>
+                Plate Number:
+                <%= car.number_plate %> <br><br>
+                
+                You have spent $<%= @picked_up.fee_so_far %> AUD so far.</p>
+            </p>
+        </div>
+        <%=image_tag("chooseLocation.jpg",:alter=>"dashboardbg", :class => "img-width")%>
+        <%= link_to "Choose location to Return", "choose_return_location", :class => "btn btn-secondary btn-lg col-sm-12 mt-1", :style => "border-radius:0" %>
+        <%= link_to "Report", "/reports/new", :class => "btn btn-danger btn-lg col-sm-12 mt-1", :style => "border-radius:0" %> <br>
+        
+        
+        
+        
+    <% elsif @returning = @user.returning_car %>
+        <div class="row shadow border rounded border-light bg-light pl-4 pt-4 pr-5 pb-3" style="position:absolute; top:100px; left:10%; width:80%;">
+            <p>
+                <strong class="h5">You are returning the car</strong>  <br><br>
+                
+                <% car = Car.find(@returning.car_id) %>
+                Car Detail:
+                <%= car.name %> <br>
+                Plate Number:
+                <%= car.number_plate %> <br><br>
+                
+                Return location:
+                <%= Location.find(@returning.return_location_id).address %> <br><br>
+                
+                You have spent $<%= @returning.fee_so_far %> AUD so far.</p>
+            </p>
+        </div>
+        <%=image_tag("returned.jpg",:alter=>"dashboardbg", :class => "img-width")%>
+        <%= link_to "Returned Car", "returned_car", :class => "btn btn-secondary btn-lg col-sm-12", :style => "border-radius:0" %>
+        <%= link_to "Rate this trip","/ratings/new", :class => "btn btn-info btn-lg col-sm-12 mt-1", :style => "border-radius:0" %>
+        <button type="button" class="btn btn-info btn-lg col-sm-12 mt-1" data-toggle="modal" data-target="#exampleModalCenter">
+          Rate Your Trip
+        </button>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Rate Your Trip</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <!--ratings-->
+              <div id="rateYo" class="p-3"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Submit</button> 
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= link_to "Report", "/reports/new", :class => "btn btn-danger btn-lg col-sm-12 mt-1", :style => "border-radius:0" %> <br>
+        
+        
+        
+    <% else %>
+        <%=image_tag("findCar.jpg",:alter=>"dashboardbg", :class => "img-width")%>
+        <%= link_to "Find a Car Now", "/", :class => "btn btn-secondary btn-lg col-sm-12", :style => "border-radius:0" %>
+    <% end %>
+    
+<script>
+  $(function () {
+   
+    $("#rateYo").rateYo({
+      rating: 0,
+      fullStar: true,
+      onSet: function (rating, rateYoInstance) {
+ 
+        alert("Rating is set to: " + rating);
+      }
+    });
+   
+  });
+</script>

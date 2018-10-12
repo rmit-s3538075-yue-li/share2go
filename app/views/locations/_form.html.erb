@@ -1,0 +1,66 @@
+<%= form_for(@location) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row justify-content-md-center m-3">
+    <%= f.label :number, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :number, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row justify-content-md-center m-3">
+    <%= f.label :street, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :street, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row justify-content-md-center m-3">
+    <%= f.label :suburb, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :suburb, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row justify-content-md-center m-3">
+    <%= f.label :state, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.select :state, options_for_select(["Victoria", "NSW", "Western Australia","Queensland","South Australia","Tasmania"], :selected => f.object.state) %>
+    </div>
+  </div>
+  <div class="row justify-content-md-center m-3">
+    <%= f.label :postcode, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :postcode, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row justify-content-md-center m-3">
+    <%= f.label :status, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.select :status, options_for_select(["Available","Unavailable"], :selected => f.object.status)%>
+    </div>
+  </div>
+  <div class="row justify-content-md-center m-3">
+    <%= f.label :longitude, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :longitude, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row justify-content-md-center m-3">
+    <%= f.label :latitude, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :latitude, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <%= f.submit "Create location", class:"btn btn-primary btn-md col-4 offset-4" %>
+  </div>
+<% end %>

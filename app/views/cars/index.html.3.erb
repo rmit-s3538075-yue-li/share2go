@@ -1,0 +1,178 @@
+<p id="notice"><%= notice %></p>
+
+
+<!--Search Bar-->
+
+<div class="bg-secondary">
+  <div class="container pt-2 pb-2">
+    <div class="row justify-content-between">
+      <div class="col-md-4">
+        <lable class="text-white">Location:</lable>
+        <input class="form-control form-control-sm">
+      </div>
+      <div class="col-md-4">
+        <lable class="text-white">Start Time:</lable>
+        <input class="form-control form-control-sm">
+      </div>
+      <div class="col-md-3 offset-1 row justify-content-between m-1">
+        <button class="btn btn-primary col-md-6 mt-1">
+          Search
+        </button>
+        <button class="btn btn-info col-md-5 mt-1" type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+          Filter
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container collapse bg-secondary" id="filterCollapse">
+    the filter options will be displayed here
+  </div>
+</div>
+
+<!--Google Maps API-->
+<div id="map" class="container-fluid mb-3"></div>
+
+
+     <script>
+  //   var map;
+  //   function initMap() {
+  //     map = new google.maps.Map(document.getElementById('map'), {
+  //       center: {lat: -37.812148, lng: 144.967337},
+  //       zoom: 13
+  //     });
+  //   }
+    
+   
+      </script>
+
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByZpeTDI3Rw0HIPNePOy67okhkSW1Oi3k&callback=initMap" async defer> </script>-->
+
+  <script>
+  // var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  //     var labelIndex = 0;
+ function getJSONMarkers() {
+          const markers = [
+            {
+              name:  "Rixos The Palm",
+              location: [-37.812148, 144.867337]
+            },
+            {
+              name:  "2",
+              location: [-37.812148, 144.907337]
+            },
+            {
+              name:  "3",
+              location: [-37.822178, 144.935678]
+            },
+            {
+              name:  "4",
+              location: [-37.823458, 144.986543]
+            },
+            {
+              name:  "5",
+              location: [-37.834578, 144.934821]
+            },
+            {
+              name:  "6",
+              location: [-37.834558, 144.989456]
+            },
+            {
+              name:  "7",
+              location: [-37.812148, 144.967337]
+            }
+          ];
+          return markers;
+        }
+
+        function initMap() {
+          // Initialize Google Maps
+          const mapOptions = {
+            center:new google.maps.LatLng(-37.814148, 144.967337),
+            zoom: 13
+          }
+          const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+          // Load JSON Data
+          const hotelMarkers = getJSONMarkers();
+          
+          // Add marker image
+          var carIcon = 'assets/<%= "carMarker.png"%>';
+            
+          // Initialize Google Markers
+          for(hotel of hotelMarkers) {
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(hotel.location[0], hotel.location[1]),
+              title: hotel.name,  //displays text when hover
+              icon: carIcon   //variable of the mark image
+            })
+            
+            //add mark event listener, open infowindow when click. 
+            //just found methods from documentation. Not working perfectly. need to rewrite marker function
+            marker.addListener('click', function () {
+              var pos = new google.maps.LatLng(hotel.location[0], hotel.location[1]);
+              infoWindow = new google.maps.InfoWindow;
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('<h1 class="text-danger">Car info</h1>');
+              infoWindow.open(map);  
+            });
+          }
+        }
+
+
+  
+
+  </script>
+  
+
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByZpeTDI3Rw0HIPNePOy67okhkSW1Oi3k&callback=initMap"
+  async defer></script>
+
+
+
+
+
+
+<!--display cars-->
+<div class="container">
+  <div class="row">
+    
+    <% @cars.each do |car| %>
+    
+    <!--thumbnail card-->
+      
+    <div class="col-md-3">
+    <a id="carCard" href="/cars/<%=car.id%>">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" alt="Car image" src="assets/<%= "carDemo.jpg"%>" style="height: 225px; width: 100%; display: block;">
+        <%= image_tag(car.image.url, alt: 'Car image') if car.image? %>
+        <div class="card-body">
+          <h5 class="font-weight-bold" style="line-height:0.5em;"><%= car.make %></h5>
+          <h6 class="mb-3"><%= car.model %></h6>
+          <p style="line-height:0.2em;">Year:<%= car.year %></p>
+          <p style="line-height:0.2em;">Type:<%= car.body_type %></p>
+          <p style="line-height:0.2em;">$<%= car.price %>/day</p>
+          
+        
+          <% if(car.status.capitalize == "Available") %>
+            <small class="text-success"><%= car.status %></small>
+          <% else %>
+            <small class="text-danger"><%= car.status %></small>
+          <% end %>
+        </div>
+      </div>
+    </a>
+    </div>
+    
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+<br>
+
+<%= link_to 'New Car', new_car_path %>

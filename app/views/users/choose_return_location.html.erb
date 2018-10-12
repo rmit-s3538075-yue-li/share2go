@@ -1,0 +1,148 @@
+<div class="row">
+  <input id="pac-input" class="form-control form-control-sm mt-3 ml-3 col-8 col-md-5" type="text" placeholder="Search Area">
+</div>
+<div id="map" class="container-fluid mb-3"></div>
+
+<script>
+function getJSONMarkers() {
+  const markers = [
+    <% Location.where(status: "Available").each do |l| %>
+    
+    {
+      id: "<%= l.id %>",
+      name:  "<%= l.address %>",
+      location: [<%= l.latitude %>, <%= l.longitude %>]
+    },
+    
+    <% end %>
+  ];
+  return markers;
+}
+
+function initMap() {
+  // Initialize Google Maps
+  const mapOptions = {
+    center:new google.maps.LatLng(-37.814148, 144.967337),
+    zoom: 13,
+    disableDefaultUI: true,
+    zoomControl: true,
+    fullscreenControl: true
+  }
+  const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.LEFT_TOP].push(input);
+  
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+  
+  // Add listener to searchbox
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+
+  // Load JSON Data
+  const carMarkers = getJSONMarkers();
+  
+  // Add marker image
+   var carIcon = '/assets/<%= "parkingMarker.png"%>';
+  
+  //createMarker function using position and title
+  function createMarker(pos, t) {[]
+    var marker = new google.maps.Marker({       
+        position: pos, 
+        map: map,  // google.maps.Map 
+        title: t,
+        icon: carIcon   //variable of the mark image
+    }); 
+    google.maps.event.addListener(marker, 'click', function() { 
+       alert("I am marker " + marker.title); 
+    }); 
+    return marker;
+  }
+  var infoWindows = [];
+  // Initialize Google Markers
+  for(car of carMarkers) {
+    var marker = new google.maps.Marker({
+      map: map,
+      position: new google.maps.LatLng(car.location[0], car.location[1]),
+      car: car,
+      title: car.name,  //displays text when hover
+      icon: carIcon
+    })
+    
+    
+    //add mark event listener, open infowindow when click. 
+    //just found methods from documentation. Not working perfectly. need to rewrite marker function
+    
+    marker.addListener('click', function () {
+      infoWindow = new google.maps.InfoWindow;
+      infoWindow.setPosition(this.position);
+      map.setCenter(this.position);
+      infoWindow.setContent('<h5 class="text-dark">'+this.car.name+'</h5>'+
+      '<form action="set_return_location"> <input type="hidden" value ="'+this.car.id+'" name="location_id">  <input type="submit" value="Choose" class="btn btn-block btn-secondary btn-sm"> </form>');
+      infoWindows.push(infoWindow); 
+      closeAllInfoWindows();
+      infoWindow.open(map);
+    });
+  }
+  function closeAllInfoWindows() {   
+    for (var i=0;i<infoWindows.length;i++) {   
+       infoWindows[i].close();   
+    }   
+  }  
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByZpeTDI3Rw0HIPNePOy67okhkSW1Oi3k&libraries=places&callback=initMap"
+async defer></script>
+
+
+<div class="row justify-content-center table-responsive-sm m-1">
+  <table class="table table-hover table-dark col-8">
+    <thead>
+      <tr>
+        <th scope="col">Number</th>
+        <th scope="col">Street</th>
+        <th scope="col">Suburb</th>
+        <th scope="col">State</th>
+        <th scope="col">Postcode</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @locations.each do |location| %>
+        <tr>
+          <td><%= location.number %></td>
+          <td><%= location.street %></td>
+          <td><%= location.suburb %></td>
+          <td><%= location.state %></td>
+          <td><%= location.postcode %></td>
+          <td>      <form action="set_return_location"> <input type="hidden" value ="<%= location.id %>" name="location_id">  <input type="submit" class="btn btn-secondary btn-sm" value="Choose"> </form>
+</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

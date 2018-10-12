@@ -1,0 +1,43 @@
+// Place all the styles related to the Cars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.back-icon{
+    color:#666666;
+    font-size:1em;
+}
+.back-icon:hover{
+    color:#dddddd;
+    background-color:white;
+    text-decoration:none;
+}
+
+.card:hover{
+    text-decoration:none;
+    color:black;
+    background-color:#fcfcfc;
+    border:1px solid #888888;
+}
+
+p#notice{
+    margin:0;
+}
+
+.carImage{
+    height:225px;
+    width: 100%;
+    object-fit:scale-down;
+    object-position:50% 50%;
+}
+.showImage{
+    height: 225px;
+    width: 100%;
+    object-fit:scale-down;
+    object-position:50% 50%;
+}
+.infoWindow-link:hover{
+    text-decoration:underline;
+    background-color:#ffffff;
+}
+.carOprt:hover{
+    background:rgba(0,0,0,0);
+}

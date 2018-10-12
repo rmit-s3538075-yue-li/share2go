@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  
+  <!--custom css-->
+  <!--TODO: put in css file-->
+  
+  <!--TODO: color of visited link-->
+  <style>
+    footer a:hover {
+      background-color:rgba(1,1,1,0);
+    }
+    header a:hover{
+      background-color:rgba(1,1,1,0);
+    }
+    #map{
+      height:400px;
+    }
+  </style>
+  
+  <title>TestingApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+      <div class="container d-flex justify-content-between">
+        
+        <!--header logo-->
+        <a href="/" class="navbar-brand d-flex align-items-center">
+          <%=image_tag("logo1.png",:alter=>"RoR icon")%>
+        </a>
+        
+        <!--header dropdown-->
+        <div class="dropdown">
+    
+
+            <% if current_user %>
+              <a href="/profile?id=<%= current_user.id %>" class = "btn btn-dark btn-sm"><%= session[:email] %></a>
+              <a href="/logout" class = "btn btn-dark btn-sm">Logout</a>
+            <% else %>
+              <a href="/login" class = "btn btn-dark btn-sm">Login</a>
+              <a href="/register" class = "btn btn-dark btn-sm">Register</a>
+            <% end %>
+
+            
+            <!--General user-->
+            
+            <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--  User Name-->
+            <!--</button>-->
+            <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+            <!--  <a class="dropdown-item" href="#">My Profile</a>-->
+            <!--  <a class="dropdown-item" href="#">My Booking History</a>-->
+            <!--</div>-->
+            
+            
+            <!--Admin User-->
+            
+            <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="admindropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+            <!--  Admin User Name-->
+            <!--</button>-->
+            <!--<div class="dropdown-menu" aria-labelledby="admindropdown">-->
+            <!--  <a class="dropdown-item" href="#">List Cars</a>-->
+            <!--  <a class="dropdown-item" href="#">Add a car</a>-->
+            <!--  <a class="dropdown-item" href="#">Add a spot</a>-->
+            <!--</div>-->
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+
+  <%= yield %>
+  
+  
+  
+  <div class="fix-bottom">
+  <footer class="container pt-3 my-md-4 pt-md-4 border-top">
+    <div class="row">
+      <div class="col-sm-4 pb-2 text-center">
+        <a class="h6 text-secondary" href="/faq">FAQs</a>
+      </div>
+      <div class="col-sm-4 pb-2 text-center">
+        <a class="h6 text-center text-secondary" href="/about">About us</a>
+      </div>
+      <div class="col-sm-4 pb-2 text-center">
+        <a class="h6 text-center text-secondary" href="/contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+<!--Bootstrap js-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
+  

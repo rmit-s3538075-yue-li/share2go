@@ -1,0 +1,240 @@
+<div class="container border-bottom mb-3">
+    <div class="row p-md-3">
+        <span class="h3 col-12 text-nowrap text-center">Welcome, <%= current_admin.username %></span>
+    </div>
+</div>
+
+<div>
+    <% reports = Report.where(read: false) %>
+    There are <%= reports.size %> unread reports <br>
+</div>
+
+
+<div class="container mb-3">
+    <nav class="navbar navbar-light row justify-content-between">
+      <button class="navbar-brand col-md-3 col-12 btn btn-light mb-3 bg-light">
+        <i class="fas fa-car"></i>
+          <%= link_to "Manage Cars", "/car_list"%>
+      </button>
+    
+      <button class="navbar-brand col-md-3 col-12 btn btn-light mb-3 bg-light" href="#">
+        <i class="fas fa-users"></i>
+       <%= link_to "Manage Users", "/users"%>
+      </button>
+           
+      <button class="navbar-brand col-md-3 col-12 btn btn-light mb-3 bg-light" href="#">
+        <i class="fas fa-parking"></i>
+       <%= link_to "Manage Location", "/locations"%>
+      </button>
+      
+        <button class="navbar-brand col-md-3 col-12 btn btn-light mb-3 bg-light" href="#">
+        <i class="fas fa-parking"></i>
+       <%= link_to "Manage Bookings", "/bookings"%>
+      </button>
+      
+        <button class="navbar-brand col-md-3 col-12 btn btn-light mb-3 bg-light" href="#">
+        <i class="fas fa-parking"></i>
+       <%= link_to "Manage Reports", "/reports"%>
+      </button>
+    </nav>
+</div>
+
+<nav class="container">
+  <div class="nav nav-tabs row" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active col-3" id="nav-weekly-tab" data-toggle="tab" href="#nav-weekly" role="tab" aria-controls="nav-weekly" aria-selected="true">Weekly</a>
+    <a class="nav-item nav-link col-3" id="nav-monthly-tab" data-toggle="tab" href="#nav-monthly" role="tab" aria-controls="nav-monthly" aria-selected="false">Monthly</a>
+    <a class="nav-item nav-link col-3" id="nav-quarterly-tab" data-toggle="tab" href="#nav-quarterly" role="tab" aria-controls="nav-quarterly" aria-selected="false">Quarterly</a>
+    <a class="nav-item nav-link col-3" id="nav-yearly-tab" data-toggle="tab" href="#nav-yearly" role="tab" aria-controls="nav-yearly" aria-selected="false">Annualy</a>
+  </div>
+</nav>
+
+<div class="container tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-weekly" role="tabpanel" aria-labelledby="nav-weekly-tab">
+    <canvas id="weekly" height="170"></canvas>
+  </div>
+  <div class="tab-pane fade" id="nav-monthly" role="tabpanel" aria-labelledby="nav-monthly-tab">
+    <canvas id="monthly" height="170"></canvas>
+  </div>
+  <div class="tab-pane fade" id="nav-quarterly" role="tabpanel" aria-labelledby="nav-quarterly-tab">
+    <canvas id="quarterly" height="170"></canvas>
+  </div>
+  <div class="tab-pane fade" id="nav-yearly" role="tabpanel" aria-labelledby="nav-yearly-tab">
+    <canvas id="yearly" height="170"></canvas>
+  </div>
+</div>
+
+<script>
+var ctx = document.getElementById("weekly");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        // labels: [<%#= @final_week_label %>],
+        labels: ["Week <%= @weeks.keys[0] %>", "Week <%= @weeks.keys[1] %>", "Week <%= @weeks.keys[2] %>", "Week <%= @weeks.keys[3] %>", "Week <%= @weeks.keys[4] %>", "Week <%= @weeks.keys[5] %>", "Week <%= @weeks.keys[6] %>", "Week <%= @weeks.keys[7] %> (This Week)"],
+        datasets: [{
+            label: 'Income(AU Dollar)',
+            data: [<%= @final_week_data %>],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<script>
+var ctx = document.getElementById("monthly");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["January", "February", "March", "April", "May", "June","July","August","September", "October", "November", "December"],
+        datasets: [{
+            label: 'Income(AU Dollar)',
+            data: [<%=@months[1]%>, <%=@months[2]%>, <%=@months[3]%>, <%=@months[4]%>, <%=@months[5]%>, <%=@months[6]%>, 
+            <%=@months[7]%>, <%=@months[8]%>, <%=@months[9]%>, <%=@months[10]%>, <%=@months[11]%>, <%=@months[12]%>],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<script>
+var ctx = document.getElementById("quarterly");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4",],
+        datasets: [{
+            label: 'Income(AU Dollar)',
+            data: [<%=@quarters[1]%>, <%=@quarters[2]%>, <%=@quarters[3]%>, <%=@quarters[4]%>],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<script>
+var ctx = document.getElementById("yearly");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [<%= @final_year_label %>],
+        datasets: [{
+            label: 'Income(AU Dollar)',
+            data: [<%= @final_year_data %>],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>

@@ -1,0 +1,18 @@
+<h1>New Rating</h1>
+<div class="container mt-3 pt-3 pb-2 border border-info rounded shadow">
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">User</lable>
+        <p class="col-7 col-sm-4 h6 bg-light p-3"><%= @ratingname.name %></p>
+    </div>
+    
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">bookeing id:</lable>
+        <p class="col-7 col-sm-4 h6 text-danger bg-light p-3"><%= @rating.booking_id %></p>
+    </div>
+    <div class="row justify-content-center">
+        <lable class="col-5 col-sm-3 text-center p-3">booked car:</lable>
+        <p class="col-7 col-sm-4 h6 text-danger bg-light p-3"><%= @ratingcar.make %></p>
+    </div>
+<%= render 'form' %>
+
+<%= link_to 'Back', ratings_path %>

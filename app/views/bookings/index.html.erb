@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container border-bottom mb-3">
+    <div class="row p-md-3">
+        <span class="h1 col-12 text-nowrap text-center">Booking History</span>
+    </div>
+</div>
+
+<div class="container table-responsive">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Car</th>
+        <th scope="col">User</th>
+        <th scope="col">Pickup time</th>
+        <th scope="col">Return time</th>
+        <th scope="col">Pickup location</th>
+        <th scope="col">Return location</th>
+        <th scope="col">Status</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @bookings.each do |booking| %>
+        <tr>
+          <td><%= booking.car_id %></td>
+          <td><%= booking.user_id %></td>
+          <td><%= booking.pickup_time %></td>
+          <td><%= booking.return_time %></td>
+          <td><%= booking.pickup_location_id %></td>
+          <td><%= booking.return_location_id %></td>
+          <td><%= booking.status %></td>
+          <td><%= link_to 'Show', booking, class: "btn btn-info btn-sm" %></td>
+          <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br>

@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container border-bottom mb-3">
+    <div class="row p-md-3">
+        <span class="h1 col-4 offset-4 text-nowrap text-center">Cancel Booking</span>
+    </div>
+</div>
+
+<div class="container">
+    <form action="/cancel_booking" method="post">
+        <input type="hidden" name="booking_id"></input>
+        
+        
+        <div class="row justify-content-center">
+            <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Car Status:</strong>
+            <select name="car_status">
+                <option <%="selected=\"true\"" if Car.find(@booking.car_id).status == "Unavailable"%>>Unavailable</option>
+                <option <%="selected=\"true\"" if Car.find(@booking.car_id).status == "Available"%>>Available</option>
+                <option <%="selected=\"true\"" if Car.find(@booking.car_id).status == "Booked"%>>Booked</option>
+            </select>
+        </div>
+        
+        <div class="row justify-content-center">
+            <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Pick Up Location Status:</strong>
+            <select name="pickup_location_status">
+                <option value = "Unavailable" <%="selected=\"true\"" if Location.find(@booking.pickup_location_id).status == "Unavailable"%>>Unavailable</option>
+                <option value = "Available" <%="selected=\"true\"" if Location.find(@booking.pickup_location_id).status == "Available"%>>Available</option>
+            </select>
+        </div>
+        
+        <% if@booking.return_location_id %>
+        <div class="row justify-content-center">
+            <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Return Location Status:</strong>
+            <select name="return_location_status">
+                <option></option>
+                <option value="Unavailable" <%="selected=\"true\"" if Location.find(@booking.return_location_id).status == "Unavailable"%>>Unavailable</option>
+                <option value="Available" <%="selected=\"true\"" if Location.find(@booking.return_location_id).status == "Available"%>>Available</option>
+            </select>
+        </div>
+        <%end%>
+        <input type="submit"></input>
+    </form>
+</div>

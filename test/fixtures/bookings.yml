@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  car_id: 1
+  user_id: 1
+  pickup_time: 2018-08-03 08:50:00
+  return_time: 2018-08-03 08:50:00
+  pickup_location_id: 1
+  return_location_id: 1
+  status: MyString
+
+two:
+  car_id: 1
+  user_id: 1
+  pickup_time: 2018-08-03 08:50:00
+  return_time: 2018-08-03 08:50:00
+  pickup_location_id: 1
+  return_location_id: 1
+  status: MyString

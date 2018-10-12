@@ -1,0 +1,143 @@
+<p id="notice"><%= notice %></p>
+
+
+<!--Search Bar-->
+
+<div class="bg-secondary">
+  <div class="container pt-2 pb-2">
+    <div class="row justify-content-between">
+      <div class="col-md-4">
+        <lable class="text-white">Location:</lable>
+        <input class="form-control form-control-sm">
+      </div>
+      <div class="col-md-4">
+        <lable class="text-white">Start Time:</lable>
+        <input class="form-control form-control-sm">
+      </div>
+      <div class="col-md-3 offset-1 row justify-content-between m-1">
+        <button class="btn btn-primary col-md-6 mt-1">
+          Search
+        </button>
+        <button class="btn btn-info col-md-5 mt-1" type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+          Filter
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container collapse bg-secondary" id="filterCollapse">
+    the filter options will be displayed here
+  </div>
+</div>
+
+<!--Google Maps API-->
+<div id="map" class="container-fluid mb-3"></div>
+
+
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByZpeTDI3Rw0HIPNePOy67okhkSW1Oi3k&callback=initMap" async defer> </script>-->
+
+  <script>
+    var markers = [];
+    var locations = [
+      ['Title 1', -37.812148, 144.867337],
+      ['Title 2', -37.812148, 144.907337],
+      ['Title 3', -37.822178, 144.935678],
+      ['Title 4', -37.823458, 144.986543],
+      ['Title 5', -37.834578, 144.934821],
+      ['Title 6', -37.834558, 144.989456],
+      ['Title 7', -37.812148, 144.967337],
+    ];
+    
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center:new google.maps.LatLng(-37.814148, 144.967337),
+      });
+    
+      setMarkers(map);
+    }
+    
+    function setMarkers(map) {
+      for (var i = 0; i < locations.length; i++) {
+    
+        var location = locations[i];
+        var locationInfowindow = new google.maps.InfoWindow({
+          content: '<h1>test</h1>',
+        });
+        var carIcon = 'assets/<%= "carMarker.png"%>';
+        var marker = new google.maps.Marker({
+          position: {lat: location[1], lng: location[2]},
+          map: map,
+          title: location[0],
+          infowindow: locationInfowindow,
+          icon: carIcon
+        });
+    
+        markers.push(marker);
+    
+        google.maps.event.addListener(marker, 'click', function() {
+          map.setCenter(this.position);
+          hideAllInfoWindows(map);
+          this.infowindow.open(map,this);
+        });
+    
+      }
+    }
+    
+    function hideAllInfoWindows(map) {
+       markers.forEach(function(marker) {
+         marker.infowindow.close(map, marker);
+      }); 
+    }
+
+  </script>
+  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByZpeTDI3Rw0HIPNePOy67okhkSW1Oi3k&callback=initMap"
+  async defer></script>
+
+
+
+
+
+
+<!--display cars-->
+<div class="container">
+  <div class="row">
+    
+    <% @cars.each do |car| %>
+    
+    <!--thumbnail card-->
+      
+    <div class="col-md-3">
+    <a id="carCard" href="/cars/<%=car.id%>">
+      <div class="card mb-4 shadow-sm">
+        <img class="card-img-top" alt="Car image" src="assets/<%= "carDemo.jpg"%>" style="height: 225px; width: 100%; display: block;">
+        <%= image_tag(car.image.url, alt: 'Car image') if car.image? %>
+        <div class="card-body">
+          <h5 class="font-weight-bold" style="line-height:0.5em;"><%= car.make %></h5>
+          <h6 class="mb-3"><%= car.model %></h6>
+          <p style="line-height:0.2em;">Year:<%= car.year %></p>
+          <p style="line-height:0.2em;">Type:<%= car.body_type %></p>
+          <p style="line-height:0.2em;">$<%= car.price %>/day</p>
+          
+        
+          <% if(car.status.capitalize == "Available") %>
+            <small class="text-success"><%= car.status %></small>
+          <% else %>
+            <small class="text-danger"><%= car.status %></small>
+          <% end %>
+        </div>
+      </div>
+    </a>
+    </div>
+    
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+<br>
+
+<%= link_to 'New Car', new_car_path %>

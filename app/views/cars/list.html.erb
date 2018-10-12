@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container border-bottom mb-3">
+    <div class="row p-md-3">
+        <span class="h1 col-12 text-nowrap text-center">Manage Cars</span>
+    </div>
+</div>
+
+<div class="row justify-content-center mb-3">
+  <div class="container row justify-content-between">
+    <div class="col-md-8 col-12 pt-1 pb-1">
+      <%= link_to 'Add a New Car', new_car_path, class: "btn btn-sm btn-secondary col-12" %>
+    </div>
+    <form class="row col-md-4 col-12 justify-content-between mb-2 ml-1 pt-1 pb-1">
+      <input type="text" name="number_plate" class="form-control form-control-sm col-7" placeholder="Plate number"></input>
+      <button type="submit" class="btn btn-secondary btn-sm col-4">Search</button>
+    </form>
+  </div>
+</div>
+
+<!--display cars-->
+<div class="container">
+  <div class="row">
+    
+    <% @cars.each do |car| %>
+    
+    <!--thumbnail card-->
+      
+    <div class="col-md-3">
+      
+      
+      <div class="card mb-4 shadow-sm bg-light">
+        <a id="carCard" href="/car_detail?id=<%=car.id%>" style="background-color: inherit; color: black; text-decoration:none">
+            <%= image_tag(car.image.url, alt: 'Car image', :class => "carImage") if car.image? %>
+            <div class="card-body">
+              <h5 class="font-weight-bold" style="line-height:0.5em;"><%= car.make %></h5>
+              <h6 class="mb-3"><%= car.model %></h6>
+              <p style="line-height:0.2em;">Year:<%= car.year %></p>
+                <p style="line-height:0.2em;">Type:<%= car.body_type %></p>
+                <p style="line-height:0.2em;">$<%= car.price %>/day</p>
+              
+            
+              <% if(car.status.capitalize == "Available") %>
+                <small class="text-success"><%= car.status %></small>
+              <% else %>
+                <small class="text-danger"><%= car.status %></small>
+              <% end %>
+            </div>
+        </a>
+        <div class="row justify-content-between border-top ml-1 mr-1">
+          <div class="col-6 text-center border-right pt-2 pb-2">
+            <%= link_to 'Edit', edit_car_path(car), :class => "text-info carOprt" %>
+          </div>
+          <div class="col-6 text-center pt-2 pb-2">
+            <%= link_to 'Delete', car, method: :delete, data: { confirm: 'Are you sure?' }, :class => "text-danger carOprt" %>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+    
+    <% end %>
+  </div>
+</div>

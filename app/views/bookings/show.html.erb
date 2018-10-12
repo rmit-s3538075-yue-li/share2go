@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container border-bottom mb-3">
+    <div class="row p-md-3">
+        <%#= link_to '<Back', bookings_path,:class => 'small col-2 text-left align-middle pt-3 back-icon' -%>
+        <span class="h1 col-4 offset-4 text-nowrap text-center">Booking successful</span>
+    </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Car ID:</strong>
+    <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
+      &nbsp;<%= @booking.car_id %>
+    </p>
+  </div>
+  
+  <div class="row justify-content-center">
+    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">User ID:</strong>
+    <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
+      &nbsp;<%= @booking.user_id %>
+    </p>
+  </div>
+  
+  <div class="row justify-content-center">
+    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Pickup Time:</strong>
+    <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
+      &nbsp;<%= @booking.pickup_time %>
+    </p>
+  </div>
+  
+  <div class="row justify-content-center">
+    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Return Time:</strong>
+    <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
+      &nbsp;<%= @booking.return_time %>
+    </p>
+  </div>
+  
+  <div class="row justify-content-center">
+    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Pickup Location:</strong>
+    <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
+      &nbsp;<%= @booking.pickup_location_id %>
+    </p>
+  </div>
+  
+  <div class="row justify-content-center">
+    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Return Location:</strong>
+    <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
+      &nbsp;<%= @booking.return_location_id %>
+    </p>
+  </div>
+  
+  <div class="row justify-content-center">
+    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Status:</strong>
+    <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
+      &nbsp;<%= @booking.status %>
+    </p>
+  </div>
+  
+  <% if current_admin %>
+  <a href="/cancel_booking?id=<%= @booking.id %>">cancel booking</a>
+  <% end %>
+</div>

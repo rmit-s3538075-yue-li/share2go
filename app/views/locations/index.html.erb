@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container border-bottom mb-3">
+    <div class="row p-md-3">
+        <span class="h1 col-12 text-nowrap text-center">Manage Locations</span>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="container row justify-content-between">
+    <div class="col-md-8 col-12 pt-1 pb-1">
+      <%= link_to 'Add a New Location', new_location_path, class: "btn btn-sm btn-secondary col-12" %>
+    </div>
+    <form class="row col-md-4 col-12 justify-content-between mb-2 ml-1 pt-1 pb-1">
+      <input type="text" name="street" class="form-control form-control-sm col-7" placeholder="Street name"></input>
+      <button type="submit" class="btn btn-secondary btn-sm col-4">Search</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="row justify-content-center table-responsive-sm m-1">
+  <table class="table table-hover col-10">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Number</th>
+        <th scope="col">Street</th>
+        <th scope="col">Suburb</th>
+        <th scope="col">State</th>
+        <th scope="col">Postcode</th>
+        <th scope="col">Status</th>
+        <th scope="col">Longitude</th>
+        <th scope="col">Latitude</th>
+        <th scope="col" colspan="2"></th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @locations.each do |location| %>
+        <tr>
+          <td><%= location.number %></td>
+          <td><%= location.street %></td>
+          <td><%= location.suburb %></td>
+          <td><%= location.state %></td>
+          <td><%= location.postcode %></td>
+          <td><%= location.status %></td>
+          <td><%= location.longitude %></td>
+          <td><%= location.latitude %></td>
+          <td><%= link_to 'Edit', edit_location_path(location), class: "btn btn-info btn-sm" %></td>
+          <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

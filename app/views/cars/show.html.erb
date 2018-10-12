@@ -1,0 +1,106 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container border-bottom mb-3">
+    <div class="row p-md-3">
+        <%#= link_to '<Back', cars_path,:class => 'small col-2 text-left align-middle pt-3 back-icon' -%>
+        <span class="h1 col-4 offset-4 text-nowrap text-center">Car Details</span>
+    </div>
+</div>
+
+
+<div class="row justify-content-center">
+  <div class="row col-md-8">
+    <div class="col-md-5 border" style="padding:1em">
+      <%= image_tag(@car.image.url, alt: 'Car image', :class => "showImage") if @car.image? %>
+    </div>
+    
+    <div class="col-md-7">
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Make:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          <%= @car.make %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Year:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          <%= @car.year %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Model:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          <%= @car.model %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Body type:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          <%= @car.body_type %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Number plate:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          <%= @car.number_plate %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Condition:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          <%= @car.condition %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Price:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          <%= @car.price %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Status:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          <%= @car.status %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Location:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          &nbsp;<%= @car.location_id %>
+        </p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <strong class="col-md-4 align-middle">Rating:</strong>
+        <p class="col-md-8 bg-light text-dark align-middle">
+          
+          
+          <%# if !@car.rating.nan? %>
+          <% 5.times do |i|  %>
+            <% if i < @car.rating %>
+              <span> <%=image_tag("star.png",size: "15")%></span>
+            <% else %>
+              <span> <%=image_tag("star_black.png",size: "15")%></span>
+            <% end %>
+          <% end %>
+          <%# end %>
+          
+          
+        </p>
+      </div>
+      
+  
+    </div>
+  
+    <%= link_to "BOOK IT NOW", new_booking_path(:car => @car.id),:class => 'btn btn-primary btn-block mt-3' %>
+  </div>
+</div>

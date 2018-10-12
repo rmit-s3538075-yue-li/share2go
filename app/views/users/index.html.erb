@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container border-bottom mb-3">
+    <div class="row p-md-3">
+        <span class="h1 col-12 text-nowrap text-center">Manage Users</span>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="container row justify-content-between">
+    <div class="col-md-7">
+      
+    </div>
+    <form class="row col-md-4 col-12 justify-content-between mb-2 ml-1">
+      <input type="text" name="id" class="form-control form-control-sm col-7" placeholder="ID" ></input>
+      <button type="submit" class="btn btn-secondary btn-sm col-4">Search</button>
+    </form>
+  </div>
+</div>
+
+<div class="row justify-content-center table-responsive-sm m-1">
+  <table class="table table-hover col-10">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">License no</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Email</th>
+        <th scope="col" colspan="2">Operation</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+           <td><%= user.id %></td>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.license_no %></td>
+          <td><%= user.mobile %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to 'Show', user, class: "btn btn-info btn-sm" %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

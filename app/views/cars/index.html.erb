@@ -1,0 +1,283 @@
+<p id="notice" class="alert alert-info" style="padding:0; border:0">
+  <%= notice %>
+</p>
+
+<!--Search Bar-->
+
+<div action="/cars" method="get" class="bg-secondary">
+  <div class="container pt-2 pb-2">
+    <div class="row justify-content-between">
+      <div class="col-md-8 m-1">
+        <lable class="text-white">Location:</lable>
+        <input id="pac-input" class="form-control form-control-sm" type="text" placeholder="">
+      </div>
+      <div class="col-md-3 row justify-content-between m-1">
+        <button class="btn btn-info col-md-12 mt-1" type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+          Filter
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--filter div-->
+  <form class="container collapse bg-secondary pb-1" id="filterCollapse">
+    <div class="pl-1 pt-2 row">
+      <strong class="col-md-2 text-white">
+        Body Type
+      </strong>
+      <div class="row col-md-10" style="padding-left:2.3em">
+        <div class="form-group form-check col-md-3 col-sm-2">
+          <input type="checkbox" class="form-check-input" id="" name="body_type[]" value="Sedan">
+          <label class="form-check-label text-white" for="sedan">Sedan</label>
+        </div>
+        <div class="form-group form-check col-md-3 col-sm-2">
+          <input type="checkbox" class="form-check-input" id="suv" name="body_type[]" value="SUV">
+          <label class="form-check-label text-white" for="suv">SUV</label>
+        </div>
+        <div class="form-group form-check col-md-3 col-sm-2">
+          <input type="checkbox" class="form-check-input" id="coupe" name="body_type[]" value="Coupe">
+          <label class="form-check-label text-white" for="coupe">Coupe</label>
+        </div>
+        <div class="form-group form-check col-md-3 col-sm-2">
+          <input type="checkbox" class="form-check-input" id="Hatchback" name="body_type[]" value="Hatchback">
+          <label class="form-check-label text-white" for="Hatchback">Hatchback</label>
+        </div>
+        <div class="form-group form-check col-md-3 col-sm-2">
+          <input type="checkbox" class="form-check-input" id="MPV" name="body_type[]" value="MPV">
+          <label class="form-check-label text-white" for="MPV">MPV</label>
+        </div>
+        <div class="form-group form-check col-md-3 col-sm-2">
+          <input type="checkbox" class="form-check-input" id="Crossover" name="body_type[]" value="Crossover">
+          <label class="form-check-label text-white" for="Crossover">Crossover</label>
+        </div>
+        <div class="form-group form-check col-md-3 col-sm-2">
+          <input type="checkbox" class="form-check-input" id="Convertible" name="body_type[]" value="Convertible">
+          <label class="form-check-label text-white" for="Convertible">Convertible</label>
+        </div>
+        <div class="form-group form-check col-md-3 col-sm-2">
+          <input type="checkbox" class="form-check-input" id="Others" name="body_type[]" value="Others">
+          <label class="form-check-label text-white" for="Others">Others</label>
+        </div>
+      </div>
+    </div>
+    <div class="container border-bottom">
+    </div>
+    <div class="pl-1 row pt-3">
+      <strong class="col-md-2 text-white">
+        Condition
+      </strong>
+      <div class="row col-md-10" style="padding-left:2.3em">
+        <div class="form-group form-check col-md-2 col-sm-3">
+          <input type="checkbox" class="form-check-input" id="Excellent" name="condition[]" value="Excellent">
+          <label class="form-check-label text-white" for="Excellent">Excellent</label>
+        </div>
+        <div class="form-group form-check col-md-2 col-sm-3">
+          <input type="checkbox" class="form-check-input" id="Good" name="condition[]" value="Good">
+          <label class="form-check-label text-white" for="Good">Good</label>
+        </div>
+         <div class="form-group form-check col-md-2 col-sm-3">
+          <input type="checkbox" class="form-check-input" id="Fair" name="condition[]" value="Fair">
+          <label class="form-check-label text-white" for="Fair">Fair</label>
+        </div>
+         <div class="form-group form-check col-md-2 col-sm-3">
+          <input type="checkbox" class="form-check-input" id="Poor" name="condition[]" value="Poor">
+          <label class="form-check-label text-white" for="Poor">Poor</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container border-bottom">
+    </div>
+    
+    <div class="pl-1 row pt-2">
+      <strong class="col-md-2 text-white pt-1">
+        Price
+      </strong>
+      <div class="row col-md-10 mb-2" style="padding-left:2.3em">
+        <div class="">
+          
+          <div class="form-group form-check col-md-2 col-sm-3">
+            <input type="checkbox" class="form-check-input" id="0~50" name="price[]" value="0~50">
+            <label class="form-check-label text-white" for="0~50">0~50</label>
+          </div>
+          <div class="form-group form-check col-md-2 col-sm-3">
+            <input type="checkbox" class="form-check-input" id="50~100" name="price[]" value="50~100">
+            <label class="form-check-label text-white" for="50~100">50~100</label>
+          </div>  
+          <div class="form-group form-check col-md-2 col-sm-3">
+            <input type="checkbox" class="form-check-input" id="100~150" name="price[]" value="100~150">
+            <label class="form-check-label text-white" for="100~250">100~150</label>
+          </div>
+          <div class="form-group form-check col-md-2 col-sm-3">
+            <input type="checkbox" class="form-check-input" id="150~200" name="price[]" value="150~200">
+            <label class="form-check-label text-white" for="150~200">150~200</label>
+          </div>
+          <div class="form-group form-check col-md-2 col-sm-3">
+            <input type="checkbox" class="form-check-input" id="200~∞" name="price[]" value="200~∞">
+            <label class="form-check-label text-white" for="200~∞">200~∞</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="submit"  onclick="submitFilter();" value="Search" class="btn btn-block btn-primary mb-3"/>
+  </form>
+</div>
+
+
+<!--Submit fileter form-->
+<script type="text/javascript">
+  function submitFilter(){
+    document.getElementById("filterCollapse").submit();//
+  }
+</script>
+
+
+<!--Google Maps API-->
+<div id="map" class="container-fluid mb-3"></div>
+
+
+<script>
+  function getJSONMarkers() {
+    const markers = [
+      <% @cars.each do |c| %>
+      <% location = Location.find(c.location_id) %>
+      
+      {
+        id: <%= c.id %>,
+        name:  "<%= c.name %>",
+        price: "<%= c.price %>",
+        address: "<%= location.address %>",
+        location: [<%= location.latitude %>, <%= location.longitude %>],
+        image:"<%=  %>"
+      },
+      
+      <% end %>
+    ];
+    return markers;
+  }
+  
+  function initMap() {
+    // Initialize Google Maps
+    const mapOptions = {
+      center:new google.maps.LatLng(-37.814148, 144.967337),
+      zoom: 13,
+      mapTypeId: 'roadmap',
+      disableDefaultUI: true,
+      zoomControl: true,
+      fullscreenControl: true
+    }
+    const map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
+    
+    // Add listener to searchbox
+    searchBox.addListener('places_changed', function() {
+      var places = searchBox.getPlaces();
+  
+      var bounds = new google.maps.LatLngBounds();
+      places.forEach(function(place) {
+        if (!place.geometry) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+  
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+    // Load JSON Data
+    const carMarkers = getJSONMarkers();
+    
+    // Add marker image
+    var carIcon = '/assets/<%= "carMarker.png"%>';
+    
+    var infoWindows = [];
+    
+    // Initialize Google Markers
+    for(car of carMarkers) {
+      var marker = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng(car.location[0], car.location[1]),
+        car: car,
+        title: car.name,  //displays text when hover
+        icon: carIcon   //variable of the mark image
+      })
+      
+      //add mark event listener, open infowindow when click. 
+      //just found methods from documentation. Not working perfectly. need to rewrite marker function
+      
+      marker.addListener('click', function () {
+        infoWindow = new google.maps.InfoWindow;
+        infoWindow.setPosition(this.position);
+        map.setCenter(this.position);
+        infoWindow.setContent(
+          '<h5 class="font-weight-bold mb-3">'+this.car.name+'</h5>'+
+          '<p class=" style="line-height:0.2em;"">'+this.car.address+'</p>'+
+          '<p class=" style="line-height:0.2em;"">'+'AU $'+this.car.price+'/day'+'</p>'+
+          '<a href="/cars/'+this.car.id+'" class="text-secondary infoWindow-link">See More</a>');
+        infoWindows.push(infoWindow); 
+        closeAllInfoWindows();
+        infoWindow.open(map);
+      });
+    }
+    function closeAllInfoWindows() {   
+      for (var i=0;i<infoWindows.length;i++) {   
+         infoWindows[i].close();
+      }   
+    }  
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByZpeTDI3Rw0HIPNePOy67okhkSW1Oi3k&libraries=places&callback=initMap"
+async defer></script>
+
+
+
+
+
+
+
+<!--display cars-->
+<div class="container">
+  <div class="row">
+    
+    <% @cars.each do |car| %>
+    
+    <!--thumbnail card-->
+      
+    <div class="col-md-3">
+    <a id="carCard" href="/cars/<%=car.id%>">
+      <div class="card mb-4 shadow-sm bg-light">
+        <%= image_tag(car.image.url, alt: 'Car image', :class => "carImage") if car.image? %>
+        <div class="card-body">
+          <h5 class="font-weight-bold" style="line-height:0.5em;"><%= car.make %></h5>
+          <h6 class="mb-3"><%= car.model %></h6>
+          <p style="line-height:0.2em;">Year:<%= car.year %></p>
+          <p style="line-height:0.2em;">Type:<%= car.body_type %></p>
+          <p style="line-height:0.2em;">$<%= car.price %>/day</p>
+          
+        
+          <% if(car.status.capitalize == "Available") %>
+            <small class="text-success"><%= car.status %></small>
+          <% else %>
+            <small class="text-danger"><%= car.status %></small>
+          <% end %>
+        </div>
+      </div>
+    </a>
+    </div>
+    <% end %>
+  </div>
+</div>
