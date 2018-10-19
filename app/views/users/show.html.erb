@@ -60,7 +60,6 @@
     <thead>
       <tr>
         <th scope="col">Car</th>
-        <th scope="col">User</th>
         <th scope="col">Pickup time</th>
         <th scope="col">Return time</th>
         <th scope="col">Pickup location</th>
@@ -73,12 +72,11 @@
     <tbody>
       <% @bookings.each do |booking| %>
         <tr>
-          <td><%= booking.car_id %></td>
-          <td><%= booking.user_id %></td>
+          <td><%= Car.find(booking.car_id).name %></td>
           <td><%= booking.pickup_time %></td>
           <td><%= booking.return_time %></td>
-          <td><%= booking.pickup_location_id %></td>
-          <td><%= booking.return_location_id %></td>
+          <td><%= Location.find(booking.pickup_location_id).address %></td>
+          <td><%= Location.find(booking.return_location_id).address %></td>
           <td><%= booking.status %></td>
           <td><%= link_to 'Show', booking %></td>
         </tr>

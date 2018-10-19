@@ -24,12 +24,12 @@
     <tbody>
       <% @bookings.each do |booking| %>
         <tr>
-          <td><%= booking.car_id %></td>
-          <td><%= booking.user_id %></td>
+          <td><%= Car.find(booking.car_id).name if Car.exists?(id: booking.car_id)%></td>
+          <td><%= User.find(booking.user_id).name %></td>
           <td><%= booking.pickup_time %></td>
           <td><%= booking.return_time %></td>
-          <td><%= booking.pickup_location_id %></td>
-          <td><%= booking.return_location_id %></td>
+          <td><%= Location.find(booking.pickup_location_id).address %></td>
+          <td><%= Location.find(booking.return_location_id).address %></td>
           <td><%= booking.status %></td>
           <td><%= link_to 'Show', booking, class: "btn btn-info btn-sm" %></td>
           <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
