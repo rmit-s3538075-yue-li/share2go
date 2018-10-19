@@ -23,11 +23,11 @@
     <tbody>
       <% @bookings.each do |booking| %>
         <tr>
-          <td><%= Car.find(booking.car_id).name %></td>
+          <td><%= Car.find(booking.car_id).name if Car.exists?(id: booking.car_id) %></td>
           <td><%= booking.pickup_time %></td>
           <td><%= booking.return_time %></td>
-          <td><%= Location.find(booking.pickup_location_id).address %></td>
-          <td><%= Location.find(booking.return_location_id).address %></td>
+          <td><%= Location.find(booking.pickup_location_id).address if Location.exists?(id: booking.pickup_location_id) %></td>
+          <td><%= Location.find(booking.return_location_id).address if Location.exists?(id: booking.return_location_id) %></td>
           <td><%= booking.status %></td>
           <td><%= link_to 'Show', booking %></td>
         </tr>
