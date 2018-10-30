@@ -32,7 +32,7 @@
   <div class="row justify-content-md-center m-3">
     <%= f.label :state, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-6">
-      <%= f.select :state, options_for_select(["Victoria", "NSW", "Western Australia","Queensland","South Australia","Tasmania"], :selected => f.object.state) %>
+      <%= f.select :state, options_for_select(["Victoria", "NSW", "Western Australia","Queensland","South Australia","Tasmania"], :selected => f.object.state),{}, class: "form-control" %>
     </div>
   </div>
   <div class="row justify-content-md-center m-3">
@@ -44,7 +44,7 @@
   <div class="row justify-content-md-center m-3">
     <%= f.label :status, class: "col-sm-2 col-form-label" %>
     <div class="col-sm-6">
-      <%= f.select :status, options_for_select(["Available","Unavailable"], :selected => f.object.status)%>
+      <%= f.select :status, options_for_select(["Available","Unavailable"], :selected => f.object.status),{}, class: "form-control"%>
     </div>
   </div>
   <div class="row justify-content-md-center m-3">

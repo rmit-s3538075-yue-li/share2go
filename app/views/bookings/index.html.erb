@@ -10,6 +10,7 @@
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
+        <th scope="col">ID</th>
         <th scope="col">Car</th>
         <th scope="col">User</th>
         <th scope="col">Pickup time</th>
@@ -24,6 +25,7 @@
     <tbody>
       <% @bookings.each do |booking| %>
         <tr>
+          <td><%= booking.id%></td>
           <td><%= Car.find(booking.car_id).name if Car.exists?(id: booking.car_id)%></td>
           <td><%= User.find(booking.user_id).name if User.exists?(id: booking.user_id)%></td>
           <td><%= booking.pickup_time %></td>

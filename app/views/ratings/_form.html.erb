@@ -10,25 +10,32 @@
       </ul>
     </div>
   <% end %>
+  <div  class="container mt-3 pt-3 pb-2 border shadow">
+  <h3>Enjoyed your ride?</h3>
+    <p>Please be sure to rate your experience 1-5 stars! 1 stars being the worst and 5 stars being the best.</p>
+    <div class="field">
+      <%= f.hidden_field :user_id %>
+    </div>
+    <div class="field">
+      <%= f.hidden_field :booking_id %>
+    </div>  
+    <div class="field">
+      <%= f.hidden_field :car_id %>
+    </div>
+    
+      <div class="row justify-content-md-center m-3">
+        <%= f.label :rating, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-6">
+          <%= f.number_field :rating, max: 5, min: 1, class: "form-control" %>
+        </div>
+      </div>
+    
+    <div class="field">
+      <%= f.hidden_field :time %>
+    </div>
+  </div>
 
-  <div class="field">
-    <%= f.hidden_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :booking_id %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :car_id %>
-  </div>
-  <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating, max: 5, min: 1 %>
-  </div>
-  <div class="field">
-    <%= f.label :time %><br>
-    <%= f.datetime_select :time %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit "Submit", class:"btn btn-primary btn-md col-4 offset-4 mt-3" %>
+  
 <% end %>

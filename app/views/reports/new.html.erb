@@ -6,18 +6,23 @@
 
 <div class="container mt-3 pt-3 pb-2 border shadow">
     <div class="row justify-content-center">
-        <lable class="col-5 col-sm-3 text-center p-3">User</lable>
+        <lable class="col-5 col-sm-3 text-center p-3">User:</lable>
         <p class="col-7 col-sm-4 h6 bg-light p-3"><%= @reportname.name %></p>
     </div>
     
+    <!--<div class="row justify-content-center">-->
+    <!--    <lable class="col-5 col-sm-3 text-center p-3">booking id:</lable>-->
+    <!--    <p class="col-7 col-sm-4 h6 text-danger bg-light p-3"><%= @report.booking_id %></p>-->
+    <!--</div>-->
+    
     <div class="row justify-content-center">
-        <lable class="col-5 col-sm-3 text-center p-3">bookeing id:</lable>
-        <p class="col-7 col-sm-4 h6 text-danger bg-light p-3"><%= @report.booking_id %></p>
+        <lable class="col-5 col-sm-3 text-center p-3">Booked car:</lable>
+        <p class="col-7 col-sm-4 h6 text-danger bg-light p-3"><%= @reportcar.name %></p>
     </div>
     
     <div class="row justify-content-center">
-        <lable class="col-5 col-sm-3 text-center p-3">booked car:</lable>
-        <p class="col-7 col-sm-4 h6 text-danger bg-light p-3"><%= @reportcar.make %></p>
+        <lable class="col-5 col-sm-3 text-center p-3">Time:</lable>
+        <p class="col-7 col-sm-4 h6 bg-light p-3"><%= @report.time %></p>
     </div>
 </div>
 <%= render 'form' %>

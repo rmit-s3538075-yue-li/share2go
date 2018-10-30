@@ -9,16 +9,16 @@
 
 <div class="container">
   <div class="row justify-content-center">
-    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Car ID:</strong>
+    <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Car:</strong>
     <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
-      &nbsp;<%= @booking.car_id %>
+      &nbsp;<%= Car.find(@booking.car_id).name if Car.exists?(id: @booking.car_id) %>
     </p>
   </div>
   
   <div class="row justify-content-center">
     <strong class="col-md-3 col-4 align-middle pt-2 pb-2">User ID:</strong>
     <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
-      &nbsp;<%= @booking.user_id %>
+      &nbsp;<%= User.find(@booking.user_id).name if User.exists?(id: @booking.user_id) %>
     </p>
   </div>
   
@@ -39,14 +39,14 @@
   <div class="row justify-content-center">
     <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Pickup Location:</strong>
     <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
-      &nbsp;<%= @booking.pickup_location_id %>
+      &nbsp;<%= Location.find(@booking.pickup_location_id).address if Location.exists?(id: @booking.pickup_location_id) %>
     </p>
   </div>
   
   <div class="row justify-content-center">
     <strong class="col-md-3 col-4 align-middle pt-2 pb-2">Return Location:</strong>
     <p class="col-md-5 col-8 bg-light text-dark align-middle text-center pt-2 pb-2">
-      &nbsp;<%= @booking.return_location_id %>
+      &nbsp;<%= Location.find(@booking.return_location_id).address if Location.exists?(id: @booking.return_location_id) %>
     </p>
   </div>
   

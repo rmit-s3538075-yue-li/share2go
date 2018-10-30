@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181009044635) do
+ActiveRecord::Schema.define(version: 20181019064709) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "username"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20181009044635) do
   create_table "bookings", force: :cascade do |t|
     t.integer  "car_id"
     t.integer  "user_id"
-    t.datetime "book_time"
     t.datetime "pickup_time"
     t.datetime "return_time"
     t.integer  "pickup_location_id"
@@ -31,6 +30,7 @@ ActiveRecord::Schema.define(version: 20181009044635) do
     t.string   "status"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.datetime "book_time"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20181009044635) do
   create_table "locations", force: :cascade do |t|
     t.string   "number"
     t.string   "street"
-    t.string   "suburb" 
+    t.string   "suburb"
     t.string   "state"
     t.integer  "postcode"
     t.float    "longitude"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20181009044635) do
     t.datetime "sentdate"
     t.string   "car_make"
     t.boolean  "read"
+    t.datetime "time"
   end
 
   create_table "users", force: :cascade do |t|

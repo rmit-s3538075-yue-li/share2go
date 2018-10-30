@@ -4,34 +4,51 @@
     </div>
 </div>
 
-<div class="container">
   <%= form_tag charges_path do %>
-    <article>
+<div class="container mt-3 pt-3 pb-2 border shadow">
       <% if flash[:error].present? %>
         <div id="error_explanation">
           <p><%= flash[:error] %></p>
         </div>
       <% end %>
-      <label class="amount">
-        <span>Top Up Amount:</span>
-        <input type="number" name="amount" ></input><br><br>
-        <input id="top_up_10" name="amount" type="radio" value="10"> $10</input>
-        <input id="top_up_20" name="amount" type="radio" value="20"> $20</input>
-        <input id="top_up_50" name="amount" type="radio" value="50"> $50</input>
-        <input id="top_up_100" name="amount" type="radio" value="100"> $100</input>
-        <input id="top_up_200" name="amount" type="radio" value="200"> $200</input>
-        <input id="top_up_500" name="amount" type="radio" value="500"> $500</input>
-        <input id="top_up_1000" name="amount" type="radio" value="1000"> $1000</input>
-        <input id="top_up_2000" name="amount" type="radio" value="2000"> $2000</input>
-        <input id="top_up_5000" name="amount" type="radio" value="5000"> $5000</input>
-      </label>
-    </article>
-    <br>
+      
+      
+      <h2>Share2Go Credit System</h2>
+      <p>The Share2Go application uses credit system as currency for our car rental services.</p>
+      <p>The web application uses credits instead of payments to allow further freedom and secure payments. Credit is purchased via third-party payment (stripes). If anything occurs during your car trip, we are easily able to refund your credits instead of waiting a couple days from your bank! Please be assured that we do not keep your credit card details in the application itself.</p>
+      <p>Minimum Payment: $5</p>
+      <div class="row justify-content-md-center m-3">
+        <label class="col-sm-2 col-form-label">Top Up Amount:</label>
+       <div class="col-sm-6">
+          <input type="number" name="amount" class="form-control"></input>
+        </div>
+        
+      </div>
+      
+      
+      
+        
+        
+
+        <!--<input id="top_up_10" name="amount" type="radio" value="10"> $10</input>-->
+        <!--<input id="top_up_20" name="amount" type="radio" value="20"> $20</input>-->
+        <!--<input id="top_up_50" name="amount" type="radio" value="50"> $50</input>-->
+        <!--<input id="top_up_100" name="amount" type="radio" value="100"> $100</input>-->
+        <!--<input id="top_up_200" name="amount" type="radio" value="200"> $200</input>-->
+        <!--<input id="top_up_500" name="amount" type="radio" value="500"> $500</input>-->
+        <!--<input id="top_up_1000" name="amount" type="radio" value="1000"> $1000</input>-->
+        <!--<input id="top_up_5000" name="amount" type="radio" value="5000"> $5000</input>-->
+        <!--<input id="top_up_2000" name="amount" type="radio" value="2000"> $2000</input>-->
+  
+  <center>
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
       data-description="Credit Top Up"
       data-amount="<%= @amount %>"
       data-locale="auto">
     </script>
+  </center>
+  
   <% end %>
 </div>
+    

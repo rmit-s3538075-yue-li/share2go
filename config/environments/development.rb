@@ -18,6 +18,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {:host => '9bacf86b033e464aa3f316d4583eae71.vfs.cloud9.us-east-2.amazonaws.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
+    domain: 'mighty-river-21669.herokuapp.com',
     address: 'smtp.gmail.com',
     port: 587,
     user_name: 'share2go.confirmation@gmail.com',

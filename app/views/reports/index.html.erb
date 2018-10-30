@@ -12,6 +12,7 @@
       <tr>
         <th scope="col">User</th>
         <th scope="col">Booking</th>
+        <th scope="col">Car</th>
         <th scope="col">Content</th>
         <th scope="col-3" colspan="2"></th>
       </tr>
@@ -20,8 +21,9 @@
     <tbody>
       <% @reports.each do |report| %>
         <tr>
-          <td><%= report.user_id %></td>
+          <td><%= User.find(report.user_id).name if User.exists?(id: report.user_id) %></td>
           <td><%= report.booking_id %></td>
+          <td><%= Car.find(report.car_id).name if Car.exists?(id: report.car_id) %></td>
           <td><%= report.content %></td>
           <td><%= link_to 'Show', report, class: "btn btn-info btn-sm" %></td>
           <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>

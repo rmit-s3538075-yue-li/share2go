@@ -9,17 +9,17 @@
 <div class="container mt-3 pt-3 pb-2 border border-info rounded shadow">
   <div class="row justify-content-center">
     <strong class="col-5 col-sm-3 text-center p-3">User:</strong>
-    <p class="col-7 col-sm-4 h6 bg-light p-3"><%= @report.user_id %></p>
+    <p class="col-7 col-sm-4 h6 bg-light p-3"><%= User.find(@report.user_id).name if User.exists?(id: @report.user_id) %></p>
   </div>
   
   <div class="row justify-content-center">
     <strong class="col-5 col-sm-3 text-center p-3">Booking:</strong>
-    <p class="col-7 col-sm-4 h6 bg-light p-3"><%= @report.booking_id %></p>
+    <p class="col-7 col-sm-4 h6 bg-light p-3"><%= @report.booking_id if Booking.exists?(id: @report.booking_id) %></p>
   </div>
   
   <div class="row justify-content-center">
     <strong class="col-5 col-sm-3 text-center p-3">Car:</strong>
-    <p class="col-7 col-sm-4 h6 bg-light p-3"><%= @report.car_id %></p>
+    <p class="col-7 col-sm-4 h6 bg-light p-3"><%= Car.find(@report.car_id).name if Car.exists?(id: @report.car_id) %></p>
   </div>
   
   <div class="row justify-content-center">

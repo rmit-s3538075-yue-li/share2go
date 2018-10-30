@@ -19,6 +19,7 @@ class ReportsController < ApplicationController
   # GET /reports/new
   def new
     @report = Report.new
+    @report.time = Time.now
     
     @report.user_id = current_user.id
     booking = current_user.current_booking
@@ -81,6 +82,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:user_id, :booking_id, :content, :car_id, :read)
+      params.require(:report).permit(:user_id, :booking_id, :content, :car_id, :read, :time)
     end
 end
